@@ -30,6 +30,13 @@ Install the Connector browser extension and never copy&paste again.
 
 - AI Studio
 - ChatGPT
+- ChatGPT Custom URLs (Nice for sending chats to projects folder etc...) [https://chatgpt.com/g/g-p-{long-id-prefix}-{project-id}/project]
+
+<p>
+<img src="https://github.com/robertpiosik/CodeWebChat/raw/HEAD/packages/shared/src/media/ChatGPT_projects-folder_view.png" alt="ChatGPT - Projects Folder View" width="300" />
+<img src="https://github.com/robertpiosik/CodeWebChat/raw/HEAD/packages/shared/src/media/ChatGPT-custom-url_vscode-view.png" alt="ChatGPT - Custom URL VSCode View" width="600" />
+</p>
+
 - Claude
 - DeepSeek
 - Doubao
