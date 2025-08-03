@@ -274,15 +274,28 @@ export class WebSocketManager {
         continue
       }
 
-      const chatbot = CHATBOTS[preset.chatbot as keyof typeof CHATBOTS]
       let url: string
-      if (preset.chatbot == 'Open WebUI') {
+      if (preset.chatbot === 'ChatGPT Custom') {
+        const customGptUrl = vscode.workspace.getConfiguration('codeWebChat').get<string>('customGptUrl');
+        if (!customGptUrl) {
+          vscode.window.showErrorMessage('Custom GPT URL is not configured. Please set it in the extension settings.');
+          continue;
+        }
+        url = customGptUrl;
+      } else if (preset.chatbot == 'Open WebUI') {
         if (preset.port) {
           url = `http://localhost:${preset.port}/`
         } else {
           url = 'http://openwebui/'
         }
       } else {
+        const chatbot = CHATBOTS[preset.chatbot as keyof typeof CHATBOTS]
+        if (!chatbot) {
+          vscode.window.showErrorMessage(
+            `The chatbot "${preset.chatbot}" is not supported.`
+          )
+          continue
+        }
         url = chatbot.url
       }
 

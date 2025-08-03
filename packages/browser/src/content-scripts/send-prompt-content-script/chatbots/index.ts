@@ -1,5 +1,6 @@
 export * from './ai-studio'
 export * from './chatgpt'
+export * from './chatgpt-custom'
 export * from './claude'
 export * from './deepseek'
 export * from './gemini'

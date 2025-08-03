@@ -4,7 +4,7 @@
   "description": "Free AI pair programming with ChatGPT, Gemini, Claude, and more",
   "version": "1.348.0",
   "scripts": {
-    "build": "npx vsce package --no-dependencies",
+    "build": "vsce package --no-dependencies",
     "vscode:prepublish": "rimraf out && npm run compile",
     "compile": "webpack --config ./webpack.config.js --mode production",
     "watch": "webpack --config ./webpack.config.js --watch --mode development",
@@ -531,6 +531,11 @@
       "type": "object",
       "title": "Code Web Chat Settings",
       "properties": {
+        "codeWebChat.customGptUrl": {
+          "type": "string",
+          "scope": "resource",
+          "description": "The full URL of your custom GPT, e.g. https://chatgpt.com/g/g-p-...."
+        },
         "codeWebChat.commitMessageInstructions": {
           "type": "string",
           "scope": "resource",
@@ -581,12 +586,6 @@
               "chatbot": "Gemini"
             },
             {
-              "name": "(2)",
-              "chatbot": "AI Studio",
-              "temperature": 0.5,
-              "systemInstructions": "You're a helpful coding assistant."
-            },
-            {
               "name": "(3)",
               "chatbot": "Claude"
             },
@@ -629,6 +628,10 @@
             {
               "name": "(13)",
               "chatbot": "Z.AI"
+            },
+            {
+              "name": "(13)",
+              "chatbot": "ChatGPT Custom"
             }
           ],
           "description": "Preset is a general or task specific web chat configuration.",
@@ -647,6 +650,7 @@
                   "Open WebUI",
                   "OpenRouter",
                   "ChatGPT",
+                  "ChatGPT Custom",
                   "Claude",
                   "Grok",
                   "Perplexity",
@@ -794,6 +798,10 @@
             {
               "name": "(13)",
               "chatbot": "Z.AI"
+            },
+            {
+              "name": "(13)",
+              "chatbot": "ChatGPT Custom"
             }
           ],
           "description": "Preset is a general or task specific web chat configuration.",
@@ -812,6 +820,7 @@
                   "Open WebUI",
                   "OpenRouter",
                   "ChatGPT",
+                  "ChatGPT Custom",
                   "Claude",
                   "Grok",
                   "Perplexity",
@@ -959,6 +968,10 @@
             {
               "name": "(13)",
               "chatbot": "Z.AI"
+            },
+            {
+              "name": "(13)",
+              "chatbot": "ChatGPT Custom"
             }
           ],
           "description": "Preset is a general or task specific web chat configuration.",
@@ -977,6 +990,7 @@
                   "Open WebUI",
                   "OpenRouter",
                   "ChatGPT",
+                  "ChatGPT Custom",
                   "Claude",
                   "Grok",
                   "Perplexity",
@@ -1094,6 +1108,10 @@
             {
               "name": "(13)",
               "chatbot": "Z.AI"
+            },
+            {
+              "name": "(13)",
+              "chatbot": "ChatGPT Custom"
             }
           ],
           "description": "Preset is a general or task specific web chat configuration.",
@@ -1112,6 +1130,7 @@
                   "Open WebUI",
                   "OpenRouter",
                   "ChatGPT",
+                  "ChatGPT Custom",
                   "Claude",
                   "Grok",
                   "Perplexity",
@@ -1317,7 +1336,8 @@
     "typed-css-modules": "^0.9.1",
     "typescript": "^5.8.3",
     "webpack": "^5.99.9",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "vsce": "^2.15.0"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",

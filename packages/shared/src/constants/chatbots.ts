@@ -67,6 +67,21 @@ export const CHATBOTS = {
     default_top_p: 0,
     models: {}
   },
+  'ChatGPT Custom': {
+    url: 'https://chatgpt.com/g/',
+    supports_custom_temperature: false,
+    supports_custom_top_p: false,
+    supports_system_instructions: false,
+    supports_user_provided_model: true,
+    supports_user_provided_port: false,
+    supports_thinking_budget: false,
+    default_system_instructions: '',
+    supported_options: {
+      temporary: 'Temporary'
+    },
+    default_top_p: 0,
+    models: {}
+  },
   Claude: {
     url: 'https://claude.ai/new',
     supports_custom_temperature: false,

@@ -6,6 +6,7 @@ import {
   ai_studio,
   gemini,
   chatgpt,
+  chatgpt_custom,
   claude,
   meta,
   mistral,
@@ -39,6 +40,9 @@ const is_gemini = current_url.startsWith(gemini_url)
 
 const openrouter_url = 'https://openrouter.ai/chat'
 const is_openrouter = current_url.startsWith(openrouter_url)
+
+const chatgpt_custom_url = 'https://chatgpt.com/g/'
+const is_chatgpt_custom = current_url.startsWith(chatgpt_custom_url)
 
 const chatgpt_url = 'https://chatgpt.com/'
 const is_chatgpt = current_url.startsWith(chatgpt_url)
@@ -87,6 +91,8 @@ if (is_ai_studio) {
   chatbot = ai_studio
 } else if (is_gemini) {
   chatbot = gemini
+} else if (is_chatgpt_custom) {
+  chatbot = chatgpt_custom
 } else if (is_chatgpt) {
   chatbot = chatgpt
 } else if (is_claude) {
@@ -125,6 +131,7 @@ export const get_textarea_element = () => {
     [gemini_url]: 'div[contenteditable="true"]',
     [openrouter_url]: 'textarea',
     [meta_url]: 'div[contenteditable="true"]',
+    [chatgpt_custom_url]: 'div#prompt-textarea',
     [chatgpt_url]: 'div#prompt-textarea',
     [grok_url]: 'textarea',
     [deepseek_url]: 'textarea',
