@@ -31,11 +31,6 @@ Install the Connector browser extension and never copy&paste again.
 - AI Studio
 - ChatGPT
 - ChatGPT Custom URLs (Nice for sending chats to projects folder etc...) [https://chatgpt.com/g/g-p-{long-id-prefix}-{project-id}/project]
-
-<p>
-<img src="https://raw.githubusercontent.com/AcidicSoil/CodeWebChat/tree/feature/custom-gpt-url/packages/shared/src/media/customGPT-url-vscode.gif" alt="Custom GPT URL VSCode" />
-</p>
-
 - Claude
 - DeepSeek
 - Doubao
@@ -52,6 +47,10 @@ Install the Connector browser extension and never copy&paste again.
 - Z.AI
 
 > <small>**Legal Disclaimer:** After chat initialization, the extension does not read the incoming message. The injected _Apply response_ button is not a means of automatic output extraction, it's an alias for the original _copy to clipboard_ button.</small>
+
+<p>
+<img src="https://raw.githubusercontent.com/AcidicSoil/CodeWebChat/feature/custom-gpt-url/packages/shared/src/media/customGPT-url-vscode.gif" alt="Custom GPT URL VSCode" />
+</p>
 
 ## <span style="background-color: #fbb100; color: black; padding: 0.2em 0.6em; border-radius: 999px">API Tools</span>
 
