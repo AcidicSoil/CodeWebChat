@@ -30,7 +30,7 @@ Install the Connector browser extension and never copy&paste again.
 
 - AI Studio
 - ChatGPT
-- ChatGPT Custom URLs (Nice for sending chats to projects folder etc...) https:\/\/chatgpt.com\/g\/g-p-{long-id-prefix}-{project-id}\/project
+- ChatGPT Custom URLs (Nice for sending chats to projects folder etc...) [`https://chatgpt.com/g/g-p-{long-id-prefix}-{project-id}/project`]
 - Claude
 - DeepSeek
 - Doubao
