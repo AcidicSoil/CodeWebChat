@@ -33,9 +33,7 @@ Install the Connector browser extension and never copy&paste again.
 - ChatGPT Custom URLs (Nice for sending chats to projects folder etc...) [https://chatgpt.com/g/g-p-{long-id-prefix}-{project-id}/project]
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/AcidicSoil/CodeWebChat/feature/custom-gpt-url/packages/shared/src/media/ChatGPT_projects-folder_view.png" alt="ChatGPT - Projects Folder View" />
-<img src="https://raw.githubusercontent.com/AcidicSoil/CodeWebChat/feature/custom-gpt-url/packages/shared/src/media/ChatGPT-custom-url_vscode-view.png" alt="ChatGPT - Custom URL VSCode View" />
-<img src="https://raw.githubusercontent.com/AcidicSoil/CodeWebChat/feature/custom-gpt-url/packages/shared/src/media/custom-gpt-url_vscode-settings.png" alt="Custom GPT URL VSCode Settings" />
+<img src="https://raw.githubusercontent.com/AcidicSoil/CodeWebChat/feature/custom-gpt-url/packages/shared/src/media/customgpt-url-vscode.gif" alt="Custom GPT URL VSCode" />
 </p>
 
 - Claude
