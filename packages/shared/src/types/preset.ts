@@ -3,6 +3,8 @@ import { CHATBOTS } from '../constants/chatbots'
 export type Preset = {
   name: string
   chatbot?: keyof typeof CHATBOTS
+  // Optional deep link for ChatGPT custom pages. Example: https://chatgpt.com/g/<id>
+  url?: string
   prompt_prefix?: string
   prompt_suffix?: string
   model?: string

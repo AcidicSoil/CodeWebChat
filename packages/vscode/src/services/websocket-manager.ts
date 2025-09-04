@@ -275,13 +275,21 @@ export class WebSocketManager {
       }
 
       let url: string
-      if (preset.chatbot === 'ChatGPT Custom') {
-        const customGptUrl = vscode.workspace.getConfiguration('codeWebChat').get<string>('customGptUrl');
+      // Prefer preset.url when present (supports ChatGPT custom deep links)
+      if (typeof (preset as any).url === 'string' && (preset as any).url.trim()) {
+        url = (preset as any).url.trim()
+      } else if (preset.chatbot === 'ChatGPT Custom') {
+        // Back-compat: fall back to global setting if provided
+        const customGptUrl = vscode.workspace
+          .getConfiguration('codeWebChat')
+          .get<string>('customGptUrl')
         if (!customGptUrl) {
-          vscode.window.showErrorMessage('Custom GPT URL is not configured. Please set it in the extension settings.');
-          continue;
+          vscode.window.showErrorMessage(
+            'Custom GPT URL is not configured. Please set it in the preset or in the extension settings.'
+          )
+          continue
         }
-        url = customGptUrl;
+        url = customGptUrl
       } else if (preset.chatbot == 'Open WebUI') {
         if (preset.port) {
           url = `http://localhost:${preset.port}/`
@@ -332,7 +340,10 @@ export class WebSocketManager {
 
     const chatbot = CHATBOTS[preset.chatbot as keyof typeof CHATBOTS]
     let url: string
-    if (preset.chatbot == 'Open WebUI') {
+    // Prefer preset.url when present
+    if (typeof (preset as any).url === 'string' && (preset as any).url.trim()) {
+      url = (preset as any).url.trim()
+    } else if (preset.chatbot == 'Open WebUI') {
       if (preset.port) {
         url = `http://localhost:${preset.port}/`
       } else {

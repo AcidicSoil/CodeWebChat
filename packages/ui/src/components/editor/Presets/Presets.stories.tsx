@@ -11,8 +11,9 @@ const presets: Presets.Preset[] = [
     chatbot: 'Gemini' as keyof typeof CHATBOTS
   },
   {
-    name: 'Code review with AI Studio',
-    chatbot: 'AI Studio' as keyof typeof CHATBOTS
+    name: 'Custom GPT – Code Reviewer',
+    chatbot: 'ChatGPT' as keyof typeof CHATBOTS,
+    url: 'https://chatgpt.com/g/demo'
   }
 ]
 

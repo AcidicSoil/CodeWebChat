@@ -35,6 +35,7 @@ export const EditPresetForm: React.FC<Props> = (props) => {
     props.preset.thinking_budget
   )
   const [model, set_model] = useState(props.preset.model)
+  const [url, set_url] = useState(props.preset.url)
   const [system_instructions, set_system_instructions] = useState(
     props.preset.system_instructions
   )
@@ -80,6 +81,7 @@ export const EditPresetForm: React.FC<Props> = (props) => {
       props.on_update({
         name,
         chatbot,
+        ...(url ? { url } : {}),
         ...(prompt_prefix ? { prompt_prefix } : {}),
         ...(prompt_suffix ? { prompt_suffix } : {}),
         ...(temperature !== undefined ? { temperature } : {}),
@@ -104,6 +106,7 @@ export const EditPresetForm: React.FC<Props> = (props) => {
     top_p,
     thinking_budget,
     chatbot,
+    url,
     model,
     system_instructions,
     port,
@@ -266,6 +269,26 @@ export const EditPresetForm: React.FC<Props> = (props) => {
             value={model || ''}
             onChange={(e) => set_model(e.target.value)}
             placeholder="Enter model name"
+          />
+        </Field>
+      )}
+
+      {(chatbot === 'ChatGPT' || chatbot === 'ChatGPT Custom') && (
+        <Field
+          label="Custom ChatGPT URL"
+          html_for="custom-chatgpt-url"
+          info={
+            <>
+              Deep link to a specific GPT, e.g. https://chatgpt.com/g/g-...
+            </>
+          }
+        >
+          <input
+            id="custom-chatgpt-url"
+            type="text"
+            value={url || ''}
+            onChange={(e) => set_url(e.target.value)}
+            placeholder="https://chatgpt.com/g/<id>"
           />
         </Field>
       )}
