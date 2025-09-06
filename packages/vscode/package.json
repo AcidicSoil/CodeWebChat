@@ -666,6 +666,10 @@
                 ],
                 "description": "Choose among supported chatbots."
               },
+              "url": {
+                "type": "string",
+                "description": "Optional: Full ChatGPT project URL for 'ChatGPT Custom'. Example: https://chatgpt.com/g/g-p-..."
+              },
               "promptPrefix": {
                 "type": "string",
                 "examples": [
@@ -835,6 +839,10 @@
                   "Z.AI"
                 ],
                 "description": "Choose among supported chatbots."
+              },
+              "url": {
+                "type": "string",
+                "description": "Optional: Full ChatGPT project URL for 'ChatGPT Custom'. Example: https://chatgpt.com/g/g-p-..."
               },
               "promptPrefix": {
                 "type": "string",
@@ -1006,6 +1014,10 @@
                 ],
                 "description": "Choose among supported chatbots."
               },
+              "url": {
+                "type": "string",
+                "description": "Optional: Full ChatGPT project URL for 'ChatGPT Custom'. Example: https://chatgpt.com/g/g-p-..."
+              },
               "model": {
                 "type": "string",
                 "description": "Model to use."
@@ -1145,6 +1157,10 @@
                   "Z.AI"
                 ],
                 "description": "Choose among supported chatbots."
+              },
+              "url": {
+                "type": "string",
+                "description": "Optional: Full ChatGPT project URL for 'ChatGPT Custom'. Example: https://chatgpt.com/g/g-p-..."
               },
               "promptPrefix": {
                 "type": "string",

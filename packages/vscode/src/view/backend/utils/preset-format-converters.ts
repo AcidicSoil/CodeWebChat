@@ -4,6 +4,7 @@ import { Preset } from '@shared/types/preset'
 export type ConfigPresetFormat = {
   name: string
   chatbot?: keyof typeof CHATBOTS
+  url?: string
   promptPrefix?: string
   promptSuffix?: string
   model?: string
@@ -23,6 +24,7 @@ export function config_preset_to_ui_format(
   return {
     name: config_preset.name,
     chatbot: config_preset.chatbot,
+    url: config_preset.url,
     prompt_prefix: config_preset.promptPrefix,
     prompt_suffix: config_preset.promptSuffix,
     model: config_preset.model,
@@ -41,6 +43,7 @@ export function ui_preset_to_config_format(preset: Preset): ConfigPresetFormat {
   return {
     name: preset.name,
     chatbot: preset.chatbot,
+    url: preset.url,
     promptPrefix: preset.prompt_prefix,
     promptSuffix: preset.prompt_suffix,
     model: preset.model,

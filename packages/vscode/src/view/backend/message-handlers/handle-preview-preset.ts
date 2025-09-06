@@ -135,6 +135,7 @@ export const handle_preview_preset = async (
   const preset_for_preview: Preset = {
     name: message.preset.name,
     chatbot: message.preset.chatbot,
+    url: message.preset.url,
     prompt_prefix: message.preset.prompt_prefix,
     prompt_suffix: message.preset.prompt_suffix,
     model: message.preset.model,

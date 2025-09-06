@@ -35,6 +35,7 @@ export const EditPresetForm: React.FC<Props> = (props) => {
     props.preset.thinking_budget
   )
   const [model, set_model] = useState(props.preset.model)
+  const [url, set_url] = useState(props.preset.url)
   const [system_instructions, set_system_instructions] = useState(
     props.preset.system_instructions
   )
@@ -75,11 +76,19 @@ export const EditPresetForm: React.FC<Props> = (props) => {
   const models = chatbot_config?.models || {}
   const supported_options = chatbot_config?.supported_options || {}
 
+  const is_chatgpt_custom = chatbot === 'ChatGPT Custom'
+  const normalized_url = (url || '').trim()
+  const is_url_invalid =
+    is_chatgpt_custom &&
+    normalized_url.length > 0 &&
+    !normalized_url.startsWith('https://chatgpt.com/g/')
+
   useEffect(() => {
     if (chatbot) {
       props.on_update({
         name,
         chatbot,
+        ...(url ? { url } : {}),
         ...(prompt_prefix ? { prompt_prefix } : {}),
         ...(prompt_suffix ? { prompt_suffix } : {}),
         ...(temperature !== undefined ? { temperature } : {}),
@@ -100,6 +109,7 @@ export const EditPresetForm: React.FC<Props> = (props) => {
     }
   }, [
     name,
+    url,
     temperature,
     top_p,
     thinking_budget,
@@ -279,6 +289,33 @@ export const EditPresetForm: React.FC<Props> = (props) => {
         />
       </Field>
 
+      {is_chatgpt_custom && (
+        <Field
+          label="Custom URL"
+          html_for="custom-url"
+          info={
+            <>
+              Full ChatGPT project URL. Example: https://chatgpt.com/g/g-p-...
+              {is_url_invalid && (
+                <div
+                  style={{ color: 'var(--vscode-errorForeground)', marginTop: 4 }}
+                >
+                  Must start with https://chatgpt.com/g/
+                </div>
+              )}
+            </>
+          }
+        >
+          <input
+            id="custom-url"
+            type="text"
+            value={url || ''}
+            onChange={(e) => set_url(e.target.value)}
+            placeholder="https://chatgpt.com/g/g-p-..."
+          />
+        </Field>
+      )}
+
       {supports_port && (
         <Field
           label="Port"
@@ -421,7 +458,13 @@ export const EditPresetForm: React.FC<Props> = (props) => {
           />
         </Field>
       </>
-      <Button on_click={props.on_save}>Save</Button>
+      <Button
+        on_click={props.on_save}
+        disabled={is_url_invalid}
+        title={is_url_invalid ? 'Enter a valid ChatGPT project URL' : undefined}
+      >
+        Save
+      </Button>
     </div>
   )
 }
