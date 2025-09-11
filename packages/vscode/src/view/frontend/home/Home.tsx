@@ -225,16 +225,17 @@ export const Home: React.FC<Props> = (props) => {
 
       set_all_presets({ ...all_presets, [props.web_mode]: updated_presets })
 
-      post_message(props.vscode, {
-        command: 'REPLACE_PRESETS',
-        presets: updated_presets.map((preset) => ({
-          name: preset.name,
-          chatbot: preset.chatbot,
-          prompt_prefix: preset.prompt_prefix,
-          prompt_suffix: preset.prompt_suffix,
-          model: preset.model,
-          temperature: preset.temperature,
-          top_p: preset.top_p,
+        post_message(props.vscode, {
+          command: 'REPLACE_PRESETS',
+          presets: updated_presets.map((preset) => ({
+            name: preset.name,
+            chatbot: preset.chatbot,
+            url: preset.url,
+            prompt_prefix: preset.prompt_prefix,
+            prompt_suffix: preset.prompt_suffix,
+            model: preset.model,
+            temperature: preset.temperature,
+            top_p: preset.top_p,
           thinking_budget: preset.thinking_budget,
           system_instructions: preset.system_instructions,
           options: preset.options,
@@ -255,16 +256,17 @@ export const Home: React.FC<Props> = (props) => {
 
       set_all_presets({ ...all_presets, [props.web_mode]: updated_presets })
 
-      post_message(props.vscode, {
-        command: 'REPLACE_PRESETS',
-        presets: updated_presets.map((preset) => ({
-          name: preset.name,
-          chatbot: preset.chatbot,
-          prompt_prefix: preset.prompt_prefix,
-          prompt_suffix: preset.prompt_suffix,
-          model: preset.model,
-          temperature: preset.temperature,
-          top_p: preset.top_p,
+        post_message(props.vscode, {
+          command: 'REPLACE_PRESETS',
+          presets: updated_presets.map((preset) => ({
+            name: preset.name,
+            chatbot: preset.chatbot,
+            url: preset.url,
+            prompt_prefix: preset.prompt_prefix,
+            prompt_suffix: preset.prompt_suffix,
+            model: preset.model,
+            temperature: preset.temperature,
+            top_p: preset.top_p,
           thinking_budget: preset.thinking_budget,
           system_instructions: preset.system_instructions,
           options: preset.options,
@@ -308,16 +310,17 @@ export const Home: React.FC<Props> = (props) => {
       set_all_presets({ ...all_presets, [current_mode]: reordered_presets })
     }
 
-    post_message(props.vscode, {
-      command: 'REPLACE_PRESETS',
-      presets: reordered_presets.map((preset) => ({
-        name: preset.name,
-        chatbot: preset.chatbot,
-        prompt_prefix: preset.prompt_prefix,
-        prompt_suffix: preset.prompt_suffix,
-        model: preset.model,
-        temperature: preset.temperature,
-        top_p: preset.top_p,
+      post_message(props.vscode, {
+        command: 'REPLACE_PRESETS',
+        presets: reordered_presets.map((preset) => ({
+          name: preset.name,
+          chatbot: preset.chatbot,
+          url: preset.url,
+          prompt_prefix: preset.prompt_prefix,
+          prompt_suffix: preset.prompt_suffix,
+          model: preset.model,
+          temperature: preset.temperature,
+          top_p: preset.top_p,
         thinking_budget: preset.thinking_budget,
         system_instructions: preset.system_instructions,
         options: preset.options,
