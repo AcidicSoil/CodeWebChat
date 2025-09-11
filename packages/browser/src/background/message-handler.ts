@@ -10,7 +10,8 @@ import { is_message } from '@/utils/is-message'
 import { GetTabDataResponse } from '@/types/responses'
 import { image_url_to_base64 } from '@/utils/image-url-to-base64'
 
-const PRESET_URL_DEBUG = process.env.CWC_PRESET_URL_DEBUG === '1'
+const PRESET_URL_DEBUG =
+  typeof process !== 'undefined' && process.env?.CWC_PRESET_URL_DEBUG === '1'
 
 interface ChatQueueItem {
   message: InitializeChatsMessage
