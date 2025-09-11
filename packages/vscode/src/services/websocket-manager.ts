@@ -13,6 +13,9 @@ import { WebsitesProvider } from '../context/providers/websites-provider'
 import { Logger } from '@shared/utils/logger'
 import { Preset } from '@shared/types/preset'
 
+const DISABLE_PRESET_URL = process.env.CWC_DISABLE_PRESET_URL === '1'
+const PRESET_URL_DEBUG = process.env.CWC_PRESET_URL_DEBUG === '1'
+
 /**
  * Bridges the current workspace window and websocket server that runs in a separate process.
  */
@@ -275,9 +278,18 @@ export class WebSocketManager {
       }
 
       let url: string
-      const preset_url = (preset as any).url as string | undefined
+      const preset_url = !DISABLE_PRESET_URL
+        ? ((preset as any).url as string | undefined)
+        : undefined
       if (preset_url && /^https?:\/\//.test(preset_url)) {
         url = preset_url
+        if (PRESET_URL_DEBUG) {
+          Logger.log({
+            function_name: 'initialize_chats',
+            message: '[cwc:preset:url] using preset url',
+            data: preset_url
+          })
+        }
       } else if (preset.chatbot === 'ChatGPT Custom') {
         // Backward-compat: fall back to legacy setting if preset.url is not provided
         const customGptUrl = vscode.workspace
@@ -320,11 +332,13 @@ export class WebSocketManager {
         client_id: this.client_id || 0 // 0 is a temporary fallback and should be removed few weeks from 28.03.25
       }
 
-      Logger.log({
-        function_name: 'initialize_chats',
-        message: 'Sending initialize chat message',
-        data: message
-      })
+      if (PRESET_URL_DEBUG) {
+        Logger.log({
+          function_name: 'initialize_chats',
+          message: '[cwc:preset:url] sending initialize chat message',
+          data: message
+        })
+      }
 
       this.client?.send(JSON.stringify(message))
     }
@@ -340,9 +354,18 @@ export class WebSocketManager {
 
     const chatbot = CHATBOTS[preset.chatbot as keyof typeof CHATBOTS]
     let url: string
-    const preset_url = (preset as any).url as string | undefined
+    const preset_url = !DISABLE_PRESET_URL
+      ? ((preset as any).url as string | undefined)
+      : undefined
     if (preset_url && /^https?:\/\//.test(preset_url)) {
       url = preset_url
+      if (PRESET_URL_DEBUG) {
+        Logger.log({
+          function_name: 'preview_preset',
+          message: '[cwc:preset:url] using preset url',
+          data: preset_url
+        })
+      }
     } else if (preset.chatbot == 'Open WebUI') {
       if (preset.port) {
         url = `http://localhost:${preset.port}/`
@@ -366,11 +389,13 @@ export class WebSocketManager {
       client_id: this.client_id || 0 // 0 is a temporary fallback and should be removed few weeks from 28.03.25
     }
 
-    Logger.log({
-      function_name: 'preview_preset',
-      message: 'Sending preview preset message',
-      data: message
-    })
+    if (PRESET_URL_DEBUG) {
+      Logger.log({
+        function_name: 'preview_preset',
+        message: '[cwc:preset:url] sending preview preset message',
+        data: message
+      })
+    }
 
     this.client?.send(JSON.stringify(message))
   }

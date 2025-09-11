@@ -83,6 +83,18 @@ Additional instructions are appended to your prompt in "General" mode, instructi
 
 Preset is a web chat configuration (chatbot, model, system instructions, temperature, etc.). With the use of prefixes and suffixes, they can serve specific purpose in your workflow.
 
+### Custom ChatGPT project URL
+
+To use a specific [ChatGPT project](https://chatgpt.com/), choose **ChatGPT Custom** in a preset and provide the full project URL (for example `https://chatgpt.com/g/g-EXAMPLE/c/EXAMPLE`).
+
+The URL is saved with the preset and persists between VS Code or browser extension restarts. To verify:
+
+1. Create a preset with `chatbot: "ChatGPT Custom"` and fill in the project URL.
+2. Restart VS Code and reload the browser extension.
+3. Send a prompt with that preset – the browser should open the exact URL and activate the content script.
+
+If no URL is provided, the preset behaves like a regular ChatGPT preset.
+
 ## Applying chat responses
 
 With CWC, you can automatically integrate multi-file changes with the codebase.

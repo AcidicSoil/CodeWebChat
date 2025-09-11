@@ -73,6 +73,8 @@ import { code_review_promise_resolve } from '@/commands/apply-chat-response-comm
 import { Logger } from '@shared/utils/logger'
 import { update_last_used_preset_or_group } from './message-handlers/update-last-used-preset-or-group'
 
+const PRESET_URL_DEBUG = process.env.CWC_PRESET_URL_DEBUG === '1'
+
 export class ViewProvider implements vscode.WebviewViewProvider {
   private _webview_view: vscode.WebviewView | undefined
   private _config_listener: vscode.Disposable | undefined
@@ -559,6 +561,13 @@ export class ViewProvider implements vscode.WebviewViewProvider {
         return [mode, presets_ui]
       })
     ) as { [T in WebMode]: Preset[] }
+    if (PRESET_URL_DEBUG) {
+      Logger.log({
+        function_name: 'send_presets_to_webview',
+        message: '[cwc:preset:url] loaded presets',
+        data: all_presets
+      })
+    }
     this.send_message({
       command: 'PRESETS',
       presets: all_presets,

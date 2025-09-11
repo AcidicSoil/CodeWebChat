@@ -13,7 +13,8 @@ import {
   migrate_edit_to_edit_context,
   migrate_clear_history,
   migrate_preset_is_default_to_is_selected,
-  migrate_gemini_to_google_provider
+  migrate_gemini_to_google_provider,
+  migrate_custom_gpt_url_to_preset_url
 } from './migrations'
 import {
   apply_chat_response_command,
@@ -74,6 +75,8 @@ export async function activate(context: vscode.ExtensionContext) {
     await migrate_preset_is_default_to_is_selected(context)
     // 3 September 2025
     await migrate_gemini_to_google_provider(context)
+    // 19 September 2025
+    await migrate_custom_gpt_url_to_preset_url(context)
   }
 
   await migrations()
