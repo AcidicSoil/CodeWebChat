@@ -10,6 +10,8 @@ import { is_message } from '@/utils/is-message'
 import { GetTabDataResponse } from '@/types/responses'
 import { image_url_to_base64 } from '@/utils/image-url-to-base64'
 
+const PRESET_URL_DEBUG = process.env.CWC_PRESET_URL_DEBUG === '1'
+
 interface ChatQueueItem {
   message: InitializeChatsMessage
   remaining_chats: number
@@ -114,12 +116,19 @@ const process_next_chat = async () => {
       url: open_router_url,
       active: true
     })
+    if (PRESET_URL_DEBUG) {
+      console.log('[cwc:preset:url] navigating to', open_router_url)
+    }
   } else {
     // Open the tab with the current chat URL
+    const target_url = `${current_chat.url}#cwc-${batch_id}`
     browser.tabs.create({
-      url: `${current_chat.url}#cwc-${batch_id}`,
+      url: target_url,
       active: true
     })
+    if (PRESET_URL_DEBUG) {
+      console.log('[cwc:preset:url] navigating to', target_url)
+    }
   }
 
   // Increment the current index for the next chat

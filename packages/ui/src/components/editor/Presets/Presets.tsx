@@ -32,6 +32,7 @@ export namespace Presets {
     name: string
     model?: string
     chatbot?: keyof typeof CHATBOTS
+    url?: string
     prompt_prefix?: string
     prompt_suffix?: string
     is_selected?: boolean

@@ -6,6 +6,9 @@ import {
   ConfigPresetFormat,
   ui_preset_to_config_format
 } from '@/view/backend/utils/preset-format-converters'
+import { Logger } from '@shared/utils/logger'
+
+const PRESET_URL_DEBUG = process.env.CWC_PRESET_URL_DEBUG === '1'
 
 export const handle_update_preset = async (
   provider: ViewProvider,
@@ -125,14 +128,22 @@ export const handle_update_preset = async (
   const updated_presets = [...current_presets]
   updated_presets[preset_index] = ui_preset_to_config_format(updated_ui_preset)
 
-  await config.update(
-    presets_config_key,
-    updated_presets,
-    vscode.ConfigurationTarget.Global
-  )
+    await config.update(
+      presets_config_key,
+      updated_presets,
+      vscode.ConfigurationTarget.Global
+    )
 
-  provider.send_presets_to_webview(webview_view.webview)
-  provider.send_message({
-    command: 'PRESET_UPDATED'
-  })
-}
+    if (PRESET_URL_DEBUG) {
+      Logger.log({
+        function_name: 'handle_update_preset',
+        message: '[cwc:preset:url] saved preset',
+        data: final_updated_preset
+      })
+    }
+
+    provider.send_presets_to_webview(webview_view.webview)
+    provider.send_message({
+      command: 'PRESET_UPDATED'
+    })
+  }

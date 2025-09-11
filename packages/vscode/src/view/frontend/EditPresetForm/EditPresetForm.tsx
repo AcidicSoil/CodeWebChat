@@ -84,14 +84,14 @@ export const EditPresetForm: React.FC<Props> = (props) => {
     !normalized_url.startsWith('https://chatgpt.com/g/')
 
   useEffect(() => {
-    if (chatbot) {
-      props.on_update({
-        name,
-        chatbot,
-        ...(url ? { url } : {}),
-        ...(prompt_prefix ? { prompt_prefix } : {}),
-        ...(prompt_suffix ? { prompt_suffix } : {}),
-        ...(temperature !== undefined ? { temperature } : {}),
+      if (chatbot) {
+        props.on_update({
+          name,
+          chatbot,
+          ...(normalized_url ? { url: normalized_url } : {}),
+          ...(prompt_prefix ? { prompt_prefix } : {}),
+          ...(prompt_suffix ? { prompt_suffix } : {}),
+          ...(temperature !== undefined ? { temperature } : {}),
         ...(top_p !== CHATBOTS[chatbot].default_top_p ? { top_p } : {}),
         ...(thinking_budget !== undefined ? { thinking_budget } : {}),
         ...(model ? { model } : {}),
